@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Shield, ShieldAlert, CheckCircle, HelpCircle, Phone, ArrowRight, Lock, ExternalLink, ChevronDown } from "lucide-react";
+import { Shield, ShieldAlert, CheckCircle, Phone, ArrowRight, Lock, ExternalLink, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -11,6 +11,8 @@ import { HARASSMENT_TYPES, FAQS, EXTERNAL_CHANNELS, FLOW_STEPS } from "@/lib/sit
 import HarassmentModal from "@/components/HarassmentModal";
 import ComplaintForm from "@/components/ComplaintForm";
 import * as LucideIcons from "lucide-react";
+
+const FOMENTAS_LOGO_URL = "https://fomentas.nyc3.digitaloceanspaces.com/storage/webdisco/logos/89524173c071b62d07e0f5cd408fc136_2.png";
 
 // Mapeamento de strings de ícones para componentes Lucide
 const iconMap: Record<string, React.ComponentType<any>> = {
@@ -37,55 +39,62 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans">
       {/* HEADER / NAVBAR */}
-      <header className="sticky top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur-md">
+      <header className="sticky top-0 z-40 w-full border-b border-border bg-white/90 backdrop-blur-md">
         <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex flex-col leading-none">
-              <span className="text-xl font-black tracking-tight text-[#0f2942]">Fomentas</span>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">Mining Company</span>
-            </div>
+          <div className="flex items-center gap-4 min-w-fit">
+            <img
+              src={FOMENTAS_LOGO_URL}
+              alt="Fomentas Mining Company"
+              className="h-10 w-auto object-contain"
+            />
             <div className="hidden sm:block h-6 w-[1px] bg-border" />
             <span className="text-xs sm:text-sm font-semibold text-[#0f2942] hidden sm:block">
               Canal de Denúncias – Conselho de Ética
             </span>
           </div>
           
-          <nav className="hidden lg:flex items-center gap-6">
-            <button onClick={() => handleScrollTo("inicio")} className="text-sm font-medium hover:text-[#0f2942] transition-colors cursor-pointer">Início</button>
-            <button onClick={() => handleScrollTo("sobre")} className="text-sm font-medium hover:text-[#0f2942] transition-colors cursor-pointer">Sobre o Canal</button>
-            <button onClick={() => handleScrollTo("tipos")} className="text-sm font-medium hover:text-[#0f2942] transition-colors cursor-pointer">Tipos de Assédio</button>
-            <button onClick={() => handleScrollTo("denunciar")} className="text-sm font-medium hover:text-[#0f2942] transition-colors cursor-pointer">Denunciar</button>
-            <button onClick={() => handleScrollTo("faq")} className="text-sm font-medium hover:text-[#0f2942] transition-colors cursor-pointer">Perguntas Frequentes</button>
-            <button onClick={() => handleScrollTo("contato")} className="text-sm font-medium hover:text-[#0f2942] transition-colors cursor-pointer">Contato</button>
+          <nav className="hidden lg:flex items-center gap-8">
+            <button onClick={() => handleScrollTo("inicio")} className="text-sm font-medium text-[#1f3448] hover:text-[#0f2942] transition-colors cursor-pointer">Início</button>
+            <button onClick={() => handleScrollTo("sobre")} className="text-sm font-medium text-[#1f3448] hover:text-[#0f2942] transition-colors cursor-pointer">Sobre o Canal</button>
+            <button onClick={() => handleScrollTo("tipos")} className="text-sm font-medium text-[#1f3448] hover:text-[#0f2942] transition-colors cursor-pointer">Tipos de Assédio</button>
+            <button onClick={() => handleScrollTo("denunciar")} className="text-sm font-medium text-[#1f3448] hover:text-[#0f2942] transition-colors cursor-pointer">Denunciar</button>
+            <button onClick={() => handleScrollTo("faq")} className="text-sm font-medium text-[#1f3448] hover:text-[#0f2942] transition-colors cursor-pointer">Perguntas Frequentes</button>
+            <button onClick={() => handleScrollTo("contato")} className="text-sm font-medium text-[#1f3448] hover:text-[#0f2942] transition-colors cursor-pointer">Contato</button>
           </nav>
 
-          <Button
-            onClick={() => handleScrollTo("denunciar")}
-            className="bg-[#0f2942] hover:bg-[#0f2942]/90 text-white rounded-xl text-xs sm:text-sm"
-          >
-            Fazer uma denúncia agora
-          </Button>
+          <div className="hidden lg:block w-[170px]" />
         </div>
       </header>
 
       {/* HERO SECTION */}
-      <section id="inicio" className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-b from-primary/[0.02] to-transparent">
-        <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
+      <section id="inicio" className="relative min-h-[560px] md:min-h-[680px] flex items-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-emerald-50/60">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute -left-24 top-28 h-80 w-80 rounded-full bg-[#0f2942]/5 blur-3xl" />
+          <div className="absolute right-10 top-20 h-[34rem] w-[34rem] rounded-full bg-emerald-500/10 blur-3xl" />
+          <div className="absolute left-1/2 top-1/2 h-[22rem] w-[22rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/50 blur-2xl" />
+          <img
+            src={FOMENTAS_LOGO_URL}
+            alt=""
+            aria-hidden="true"
+            className="absolute left-1/2 top-1/2 w-[420px] -translate-x-1/2 -translate-y-1/2 opacity-[0.045] grayscale"
+          />
+        </div>
+
+        <div className="container relative z-10 py-20 md:py-28">
+          <div className="max-w-4xl mx-auto text-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted border border-border text-xs font-semibold text-muted-foreground mb-6">
-              <Lock className="w-3.5 h-3.5 text-emerald-600" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-sm font-semibold text-emerald-700 mb-7 shadow-sm">
+              <Lock className="w-4 h-4 text-emerald-600" />
               Espaço seguro e confidencial
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#0f2942] tracking-tight mb-6 leading-[1.15]">
-              Sua voz é protegida. <br />
-              <span className="text-emerald-600">Sua denúncia é levada a sério.</span>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-[#0f2942] tracking-tight mb-7 leading-[1.08]">
+              Sua voz é protegida. <span className="text-emerald-700">Sua denúncia é levada a sério.</span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
               A Empresa Fomentas tem tolerância zero a qualquer forma de assédio. Use este canal para relatar com segurança.
             </p>
 
@@ -94,7 +103,7 @@ export default function Home() {
               <Button
                 onClick={() => handleScrollTo("denunciar")}
                 size="lg"
-                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl px-8 w-full sm:w-auto shadow-md shadow-orange-500/10"
+                className="h-14 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl px-9 w-full sm:w-auto shadow-xl shadow-orange-500/20"
               >
                 Fazer uma denúncia agora
               </Button>
@@ -102,14 +111,15 @@ export default function Home() {
                 onClick={() => handleScrollTo("tipos")}
                 variant="outline"
                 size="lg"
-                className="rounded-xl px-8 w-full sm:w-auto border-border hover:bg-muted"
+                className="h-14 rounded-xl px-8 w-full sm:w-auto border-slate-300 bg-white/70 hover:bg-white shadow-sm font-semibold"
               >
+                <BookOpen className="w-4 h-4 mr-2" />
                 Conheça seus direitos
               </Button>
             </div>
 
             {/* Safety Badges */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
               {[
                 { label: "Anonimato garantido", icon: "🔒" },
                 { label: "Sem retaliação", icon: "🛡️" },
@@ -117,10 +127,10 @@ export default function Home() {
               ].map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center justify-center gap-2.5 px-5 py-3.5 bg-card rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow"
+                  className="flex items-center justify-center gap-3 px-6 py-4 bg-white/90 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <span className="text-xl">{item.icon}</span>
-                  <span className="text-sm font-semibold text-foreground">{item.label}</span>
+                  <span className="text-sm font-bold text-[#0f2942]">{item.label}</span>
                 </div>
               ))}
             </div>
