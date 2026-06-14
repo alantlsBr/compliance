@@ -9,7 +9,8 @@
     "start": "NODE_ENV=production node dist/index.js",
     "preview": "vite preview --host",
     "check": "tsc --noEmit",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "dev:api": "tsx server/index.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -64,7 +65,8 @@
     "wouter": "^3.3.5",
     "zod": "^4.1.12",
     "nodemailer": "^6.9.16",
-    "mssql": "^11.0.1"
+    "mssql": "^11.0.1",
+    "dotenv": "^16.4.7"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",

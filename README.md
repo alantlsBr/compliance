@@ -73,3 +73,30 @@ Retorna se a API conseguiu conectar no SQL Server.
 Os anexos não são gravados como varbinary no banco. A aplicação salva os arquivos em disco e grava os metadados/caminho na tabela `ComplianceAnexo`.
 
 Essa abordagem evita crescimento desnecessário do banco, mas exige backup da pasta definida em `DATA_DIR`.
+
+
+## Execução local com API
+
+Crie um arquivo `.env` na raiz do projeto com base no `.env.example`.
+
+Em um terminal, suba o backend/API:
+
+```bash
+npm run dev:api
+```
+
+Em outro terminal, suba o front-end Vite:
+
+```bash
+npm run dev
+```
+
+Acesse o portal em:
+
+```text
+http://localhost:3000
+```
+
+O Vite encaminha automaticamente as chamadas `/api/*` para o backend em `http://localhost:3001`.
+
+Se aparecer erro 404 ao enviar denúncia, confirme se o comando `npm run dev:api` está rodando sem erro.
