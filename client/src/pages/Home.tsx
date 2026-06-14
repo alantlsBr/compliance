@@ -155,35 +155,52 @@ export default function Home() {
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 xl:gap-6">
             {HARASSMENT_TYPES.map((card, idx) => {
               const IconComponent = iconMap[card.icon] || Shield;
+              const examples = Array.isArray(card.examples) ? card.examples.slice(0, 3) : [];
+
               return (
                 <div
                   key={idx}
-                  className="bg-card rounded-2xl border border-border p-6 flex flex-col justify-between hover:shadow-lg hover:border-[#0f2942]/20 transition-all group"
+                  className="group flex min-h-[270px] flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#0f2942]/20 hover:shadow-lg"
                 >
                   <div>
                     {/* Icon */}
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 border ${card.color}`}>
-                      <IconComponent className="w-5 h-5" />
+                    <div className={`mb-5 flex h-10 w-10 items-center justify-center rounded-xl border ${card.color}`}>
+                      <IconComponent className="h-5 w-5" />
                     </div>
+
                     {/* Title */}
-                    <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-[#0f2942] transition-colors">
+                    <h3 className="mb-3 text-base font-extrabold text-[#0f2942] transition-colors group-hover:text-emerald-700">
                       {card.title}
                     </h3>
+
                     {/* Desc */}
-                    <p className="text-sm text-muted-foreground line-clamp-3 mb-6 leading-relaxed">
+                    <p className="mb-4 text-sm font-medium leading-relaxed text-slate-600">
                       {card.desc}
                     </p>
+
+                    {/* Examples */}
+                    {examples.length > 0 && (
+                      <ul className="mb-5 space-y-2 text-xs leading-relaxed text-slate-600">
+                        {examples.map((example, exampleIdx) => (
+                          <li key={exampleIdx} className="flex gap-2">
+                            <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-600" />
+                            <span>{example}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
+
                   {/* Action Link */}
                   <button
                     onClick={() => setSelectedCard(card)}
-                    className="text-xs font-bold text-[#0f2942] flex items-center gap-1.5 hover:underline text-left mt-auto"
+                    className="mt-auto flex items-center gap-1.5 text-left text-xs font-bold text-emerald-700 hover:text-[#0f2942] hover:underline"
                   >
                     Ver todos
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                   </button>
                 </div>
               );
