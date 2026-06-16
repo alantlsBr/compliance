@@ -163,7 +163,16 @@ export default function Home() {
               return (
                 <div
                   key={idx}
-                  className="group flex min-h-[270px] flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#0f2942]/20 hover:shadow-lg"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => setSelectedCard(card)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      setSelectedCard(card);
+                    }
+                  }}
+                  className="group flex min-h-[270px] cursor-pointer flex-col rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#0f2942]/20 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:ring-offset-2"
                 >
                   <div>
                     {/* Icon */}
@@ -196,7 +205,11 @@ export default function Home() {
 
                   {/* Action Link */}
                   <button
-                    onClick={() => setSelectedCard(card)}
+                    type="button"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setSelectedCard(card);
+                    }}
                     className="mt-auto flex items-center gap-1.5 text-left text-xs font-bold text-emerald-700 hover:text-[#0f2942] hover:underline"
                   >
                     Ver todos
